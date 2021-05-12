@@ -1,0 +1,7 @@
+### Get all doctors
+GET http://localhost:5000/doctor/
+Accept: application/json
+
+### Get doctor gy ID
+GET http://localhost:5000/doctor/609bb03cdc59c8290c12e02d
+Accept: application/json

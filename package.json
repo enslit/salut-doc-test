@@ -1,0 +1,40 @@
+{
+  "name": "salut-doc-test",
+  "version": "1.0.0",
+  "description": "Тестовое задание на позицию Front-end разработчика в компанию SalutDoc",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm build --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enslit/salut-doc-test.git"
+  },
+  "keywords": [
+    "React",
+    "js"
+  ],
+  "author": "Aleksandr Emelianov <alex@enslit.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enslit/salut-doc-test/issues"
+  },
+  "homepage": "https://github.com/enslit/salut-doc-test#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.8"
+  },
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.0"
+  }
+}
