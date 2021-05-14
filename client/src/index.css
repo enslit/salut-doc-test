@@ -205,6 +205,8 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
+    text-align: center;
+    padding: 15px;
     display: grid;
     place-content: center;
     background-color: var(--color-modal-bg);
@@ -304,4 +306,24 @@ body {
 .schedule__delete:hover {
     color: var(--color-danger);
     opacity: .8;
+}
+
+@media screen and (max-width: 529px) {
+    .form {
+        width: 100%;
+    }
+
+    .filters {
+        grid-template-columns: auto;
+    }
+}
+
+@media screen and (max-width: 389px) {
+    .form__element {
+        flex-wrap: wrap;
+    }
+
+    .form__label {
+        width: 100%;
+    }
 }
