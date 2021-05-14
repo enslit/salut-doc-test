@@ -147,7 +147,7 @@ body {
 }
 
 .form__submit_disabled {
-    opacity: .6;
+    opacity: .3;
     cursor: default;
 }
 
@@ -325,5 +325,10 @@ body {
 
     .form__label {
         width: 100%;
+    }
+
+    .form__input-error {
+        top: 55px;
+        left: 0;
     }
 }
