@@ -1,6 +1,16 @@
 :root {
     --color-border: rgba(0, 0, 0, .4);
     --color-text: #333333;
+    --color-light-bg: #c4c4fd;
+    --color-accent: blue;
+    --color-danger: red;
+    --color-modal-bg: rgba(0, 0, 0, .9);
+    --color-button-text: #fff;
+
+    --transition-duration: 200ms;
+    --transition-timing-funciton: ease-in-out;
+
+    --font-main: 'Roboto', sans-serif;
 }
 
 * {
@@ -12,7 +22,12 @@ body {
     font-size: 16px;
     color: var(--color-text);
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-main);
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-duration) var(--transition-timing-funciton);
 }
 
 .App {
@@ -74,8 +89,8 @@ body {
     width: 75px;
 }
 
-.form__input {
-    font-family: 'Roboto', sans-serif;
+.input {
+    font-family: var(--font-main);
     flex-grow: 1;
     padding: 5px;
     height: 35px;
@@ -83,11 +98,11 @@ body {
     border-radius: 4px;
 }
 
-.form__input_invalid {
-    border-color: red;
+.input_invalid {
+    border-color: var(--color-danger);
 }
 
-.form__input_type_radio {
+.input_type_radio {
     display: none;
 }
 
@@ -112,19 +127,19 @@ body {
 }
 
 .form__submit {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-main);
     border-radius: 4px;
     width: 100%;
     margin: 0 auto;
     border: none;
-    background-color: blue;
-    color: #fff;
+    background-color: var(--color-accent);
+    color: var(--color-button-text);
     height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity var(--transition-duration) var(--transition-timing-funciton);
 }
 
 .form__submit:hover {
@@ -143,12 +158,12 @@ body {
     border-radius: 5px;
     color: #333;
     cursor: pointer;
-    transition: all 200ms ease;
+    transition: all var(--transition-duration) ease;
 }
 
 .button-time_active {
-    color: white;
-    background-color: blue;
+    color: var(--color-button-text);
+    background-color: var(--color-accent);
 }
 
 .button-time_disabled {
@@ -157,8 +172,8 @@ body {
 }
 
 .button-time:hover {
-    color: #333333;
-    background-color: #c4c4fd;
+    color: var(--color-text);
+    background-color: var(--color-light-bg);
 }
 
 .button-time_disabled:hover {
@@ -168,8 +183,8 @@ body {
 }
 
 .button-time_active:hover {
-    color: white;
-    background-color: blue;
+    color: var(--color-button-text);
+    background-color: var(--color-accent);
 }
 
 .form__rule-message {
@@ -180,13 +195,8 @@ body {
     position: absolute;
     top: 40px;
     font-size: 12px;
-    color: red;
+    color: var(--color-danger);
     left: 75px;
-}
-
-.form__message_show {
-    opacity: 1;
-    pointer-events: visible;
 }
 
 .form__message {
@@ -197,10 +207,101 @@ body {
     width: 100%;
     display: grid;
     place-content: center;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: var(--color-modal-bg);
     color: #fff;
     font-size: 24px;
-    transition: opacity 200ms ease-in-out;
+    transition: opacity var(--transition-duration) var(--transition-timing-funciton);
     opacity: 0;
     pointer-events: none;
+}
+
+.form__input-loading-msg {
+    position: absolute;
+    left: 75px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-duration) var(--transition-timing-funciton);
+}
+
+.form__input-loading-msg_show {
+    opacity: 1;
+}
+
+.form__message_type_loading {
+    transition-delay: 500ms;
+    transition-duration: 600ms;
+}
+
+.form__message_show {
+    opacity: 1;
+    pointer-events: visible;
+}
+
+.appointments {
+    align-self: baseline;
+    width: 100%;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.schedule {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-gap: 20px;
+}
+
+.schedule__card {
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.schedule__details {
+    padding: 10px;
+}
+
+.schedule__time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 15px;
+    background-color: var(--color-light-bg);
+    font-weight: bold;
+}
+
+.schedule__patient {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.schedule__delete {
+    color: var(--color-text);
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-duration) var(--transition-timing-funciton);
+    opacity: .5;
+}
+
+.schedule__delete:hover {
+    color: var(--color-danger);
+    opacity: .8;
 }

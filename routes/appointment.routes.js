@@ -4,17 +4,25 @@ const Appointment = require('../models/Appointment');
 
 router.get('/', async (req, res) => {
   try {
-    const currentDate = new Date();
-    const nextMonth = new Date(currentDate);
-    nextMonth.setMonth(nextMonth.getMonth() + 1);
-    nextMonth.setDate(1);
-    nextMonth.setHours(0);
-    nextMonth.setMinutes(0);
-    nextMonth.setMinutes(0);
+    const { timestamp, doctorId } = req.query;
+
+    if (!timestamp) {
+      return res.status(400).json({ error: 'Не передана метка времени' });
+    }
+
+    const date = new Date(+timestamp);
+    const dateEnd = new Date(date);
+
+    dateEnd.setHours(23);
+    dateEnd.setMinutes(59);
+    dateEnd.setSeconds(59);
 
     const appointments = await Appointment.find({
-      date: { $gte: currentDate, $lt: nextMonth },
-    }).populate('doctor');
+      date: { $gte: date, $lt: dateEnd },
+      doctor: doctorId,
+    })
+      .populate('doctor')
+      .sort({ date: 1 });
     return res.json(appointments);
   } catch (error) {
     console.error(error);

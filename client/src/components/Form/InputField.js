@@ -5,6 +5,8 @@ function FormInput({
   onBlur,
   value,
   children,
+  isLoading,
+  loadingMessage,
   id,
   label,
   type,
@@ -35,7 +37,7 @@ function FormInput({
         setInputClasses(className);
       } else {
         errorRef.current.textContent = validationMessage;
-        setInputClasses(className + ' form__input_invalid');
+        setInputClasses(className + ' input_invalid');
       }
     }
   }, [value, touched]);
@@ -50,6 +52,7 @@ function FormInput({
       typeElement = (
         <select
           {...props}
+          id={id}
           value={value}
           ref={inputRef}
           className={inputClasses}
@@ -64,6 +67,7 @@ function FormInput({
       typeElement = (
         <textarea
           {...props}
+          id={id}
           value={value}
           ref={inputRef}
           className={inputClasses}
@@ -76,6 +80,8 @@ function FormInput({
       typeElement = (
         <input
           {...props}
+          id={id}
+          type={type}
           value={value}
           ref={inputRef}
           className={inputClasses}
@@ -92,6 +98,13 @@ function FormInput({
       </label>
       {typeElement}
       {touched && <span ref={errorRef} className="form__input-error" />}
+      <div
+        className={`form__input-loading-msg ${
+          isLoading ? 'form__input-loading-msg_show' : ''
+        }`}
+      >
+        {loadingMessage}
+      </div>
     </div>
   );
 }

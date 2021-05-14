@@ -21,7 +21,7 @@ function TimeSlot({ value, onClick, checked }) {
         checked={checked}
         id={`time-${value}`}
         onChange={onClick}
-        className="form__input_type_radio"
+        className="input_type_radio"
       />
     </>
   );

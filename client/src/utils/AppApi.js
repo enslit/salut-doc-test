@@ -5,8 +5,10 @@ export class AppApi extends FetchApi {
     return this._fetch('doctor');
   }
 
-  getAppointments() {
-    return this._fetch('appointment');
+  getAppointments(timestamp, doctorId) {
+    return this._fetch(
+      `appointment?timestamp=${timestamp}&doctorId=${doctorId}`
+    );
   }
 
   createAppointment(form) {

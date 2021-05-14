@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-function Form({ initFormValues, onSubmit, children, ...props }) {
+function Form({
+  initFormValues,
+  isFormReady,
+  onSubmit,
+  onPickDoctor,
+  children,
+  ...props
+}) {
   const init = {};
   Object.keys(initFormValues).forEach((key) => {
     init[key] = {
@@ -69,6 +76,13 @@ function Form({ initFormValues, onSubmit, children, ...props }) {
         onClick={() => setMessage(null)}
       >
         {message}
+      </div>
+      <div
+        className={`form__message form__message_type_loading ${
+          !isFormReady ? 'form__message_show' : ''
+        }`}
+      >
+        Форма загружается
       </div>
     </form>
   );
