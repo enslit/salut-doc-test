@@ -54,6 +54,11 @@ function MakeAppointmentForm() {
     api
       .createAppointment({ patient, dateTime, doctorId, complaints })
       .then((appointment) => {
+        if (appointment.error) {
+          const err = new Error(appointment.error);
+          return Promise.reject(err);
+        }
+
         setAppointments((prevState) => [...prevState, appointment]);
         setMessage('Вы успешно записались на прием');
         setDoctorId(null);
