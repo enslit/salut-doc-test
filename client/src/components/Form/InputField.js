@@ -55,6 +55,7 @@ function FormInput({
           id={id}
           value={value}
           ref={inputRef}
+          required={required}
           className={inputClasses}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -70,6 +71,7 @@ function FormInput({
           id={id}
           value={value}
           ref={inputRef}
+          required={required}
           className={inputClasses}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -84,6 +86,7 @@ function FormInput({
           type={type}
           value={value}
           ref={inputRef}
+          required={required}
           className={inputClasses}
           onChange={handleChange}
           onBlur={handleBlur}
