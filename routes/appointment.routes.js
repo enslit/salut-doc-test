@@ -4,8 +4,18 @@ const Appointment = require('../models/Appointment');
 
 router.get('/', async (req, res) => {
   try {
-    const appointments = await Appointment.find();
-    return res.json({ data: appointments });
+    const currentDate = new Date();
+    const nextMonth = new Date(currentDate);
+    nextMonth.setMonth(nextMonth.getMonth() + 1);
+    nextMonth.setDate(1);
+    nextMonth.setHours(0);
+    nextMonth.setMinutes(0);
+    nextMonth.setMinutes(0);
+
+    const appointments = await Appointment.find({
+      date: { $gte: currentDate, $lt: nextMonth },
+    }).populate('doctor');
+    return res.json(appointments);
   } catch (error) {
     console.error(error);
     return res
@@ -16,20 +26,17 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { firstName, secondName, lastName, date, doctor, complaints } =
-      req.body;
+    const { patient, dateTime, doctorId, complaints } = req.body;
 
     const appointment = new Appointment({
-      firstName,
-      secondName,
-      lastName,
-      date,
-      doctor,
+      patient,
+      date: dateTime,
+      doctor: doctorId,
       complaints,
     });
     await appointment.save();
 
-    return res.status(201).json({ data: appointment });
+    return res.status(201).json(appointment);
   } catch (error) {
     console.error(error);
     return res
@@ -45,6 +52,18 @@ router.get('/:id', async (req, res) => {
     return appointment
       ? res.json({ data: appointment })
       : res.status(404).json({ error: 'Запись с указанным ID не найдена' });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: 'Что-то пошло не так, попробуйте снова' });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const appointment = await Appointment.findByIdAndRemove(req.params.id);
+    return res.json({ appointment });
   } catch (error) {
     console.error(error);
     return res

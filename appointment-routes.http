@@ -1,0 +1,21 @@
+### Получить все записи
+GET http://localhost:5000/appointment/
+Accept: application/json
+
+### Получить запись по идентификатору
+GET http://localhost:5000/appointment/ID
+Accept: application/json
+
+### Создать запись
+POST http://localhost:5000/appointment
+Content-Type: application/json
+
+{
+  "patient": "Иванов Иван Иванович",
+  "date": "Thu May 11 2021 16:30:00 GMT+0300 (Moscow Standard Time)",
+  "doctor": "609bb03cdc59c8290c12e02d",
+  "complaints": "Что-то болит"
+}
+
+### Отменить запись
+

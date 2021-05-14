@@ -5,7 +5,7 @@ const Doctor = require('../models/Doctor');
 router.get('/', async (req, res) => {
   try {
     const doctors = await Doctor.find();
-    return res.json({ data: doctors });
+    return res.json(doctors);
   } catch (error) {
     console.error(error);
     return res
